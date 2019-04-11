@@ -9,12 +9,12 @@ script:
   - docker run connectwithshrey/react-client npm run test -- --coverage
 
 after_success:
-  - docker build -t connectwithshrey/multi-client ./client
-  - docker build -t connectwithshrey/multi-worker ./worker
-  - docker build -t connectwithshrey/multi-server ./server
-  - docker build -t connectwithshrey/multi-nginx ./nginx
+  - docker build -t connectwithshrey/multi-client ./client/.
+  - docker build -t connectwithshrey/multi-worker ./worker/.
+  - docker build -t connectwithshrey/multi-server ./server/.
+  - docker build -t connectwithshrey/multi-nginx ./nginx/.
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push connectwithshrey/multi-client
   - docker push connectwithshrey/multi-worker
   - docker push connectwithshrey/multi-server
-  - docker push connectwithshrey/multi-nginx 
+  - docker push connectwithshrey/multi-nginx
