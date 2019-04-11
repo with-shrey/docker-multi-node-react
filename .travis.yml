@@ -18,3 +18,16 @@ after_success:
   - docker push connectwithshrey/multi-worker
   - docker push connectwithshrey/multi-server
   - docker push connectwithshrey/multi-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-east-1-328452198687
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key__id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY    
